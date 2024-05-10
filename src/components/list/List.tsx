@@ -1,32 +1,26 @@
-import React, { FC, useState, useEffect } from "react";
-import { TodoItem } from "../../data/types";
-import { dummyData } from "../../data/dummyData";
+import { FC, useEffect } from "react";
+import { TodoItem } from "../../modules/types/types";
 import { Item } from "../item/Item";
+import { useSelector } from "react-redux";
+import { RootState } from "../../modules/redux/rootReducer";
+import { useDispatch } from "react-redux";
+import { toggle_bool } from "../../modules/action/actionToggleBool";
 
 export const List: FC = () => {
-  const [todolsit, setTodolist] = useState<TodoItem[]>([]);
+  const todolsit = useSelector((state: RootState) => state.todos);
+  const dispatch = useDispatch();
 
-  useEffect(() => {
-    setTodolist(dummyData);
-  }, []);
+  useEffect(() => {}, []);
 
-  const toggleBool = (id: number) => {
-    setTodolist((prevState) =>
-      prevState.map((todo) =>
-        todo.id === id ? { ...todo, bool: !todo.bool } : todo
-      )
-    );
+  const haldeToggleBool = (id: number) => {
+    dispatch(toggle_bool(id));
   };
 
   return (
     <>
       <ul>
         {todolsit.map((todo: TodoItem) => (
-          <Item todo={todo} toggleBool={toggleBool} />
-          // <li key={todo.id}>
-          //   <span>{todo.name}</span>
-          //   <input type="checkbox" checked={todo.bool} />
-          // </li>
+          <Item todo={todo} toggleBool={haldeToggleBool} />
         ))}
       </ul>
     </>
