@@ -2,9 +2,7 @@ import { KeyboardEvent, useState } from "react";
 import { useDispatch } from "react-redux";
 import { ADD_TODO } from "../../modules/action/actionType";
 
-type Props = {};
-
-const Add = (props: Props) => {
+const Add = () => {
   const dispatch = useDispatch();
   const [name, setName] = useState<string>("");
 
