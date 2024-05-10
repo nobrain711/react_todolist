@@ -8,11 +8,13 @@ import {
 import { Todolist } from "./routes/Todolist";
 import { Provider } from "react-redux";
 import { store } from "./modules/redux/store";
+import { Header } from "./components/common/header/header";
 
 function App() {
   return (
     <Provider store={store}>
       <Router>
+        <Header />
         <Routes>
           <Route path="/" element={<Navigate to="/todo" />} />
           <Route path="/todo" element={<Todolist />} />
