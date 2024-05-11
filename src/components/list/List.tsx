@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { useEffect } from "react";
 import { TodoItem } from "../../modules/types/types";
 import { Item } from "../item/Item";
 import { useSelector } from "react-redux";
@@ -6,7 +6,7 @@ import { RootState } from "../../modules/redux/rootReducer";
 import { useDispatch } from "react-redux";
 import { toggle_bool } from "../../modules/action/actionToggleBool";
 
-export const List: FC = () => {
+export const List = () => {
   const todolsit = useSelector((state: RootState) => state.todos);
   const dispatch = useDispatch();
 
@@ -20,7 +20,7 @@ export const List: FC = () => {
     <>
       <ul>
         {todolsit.map((todo: TodoItem) => (
-          <Item todo={todo} toggleBool={haldeToggleBool} />
+          <Item key={todo.id} todo={todo} toggleBool={haldeToggleBool} />
         ))}
       </ul>
     </>

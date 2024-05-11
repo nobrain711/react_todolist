@@ -7,23 +7,27 @@ const initialState: TodoItem[] = dummyData;
 const todoReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case TOGGLE_BOOL:
-      let tId = action.payload;
+      let tId: number = action.payload;
       return state.map((todo) =>
         todo.id === tId ? { ...todo, bool: !todo.bool } : todo
       );
+
     case ADD_TODO:
       return [
         ...state,
         {
-          id: state.length,
+          id: state.length + 1,
           name: action.payload,
           bool: false,
         },
       ];
-    case ONE_SELECT:
-      let oId = action.payload;
 
-      return state.map((todo) => (todo.id === oId ? { todo } : null));
+    case ONE_SELECT:
+      let sId: number = action.payload;
+
+      return state
+        .filter((sId) => sId !== null)
+        .map((todo) => (todo.id === sId ? { ...todo, seleted: true } : null));
 
     default:
       return state;
