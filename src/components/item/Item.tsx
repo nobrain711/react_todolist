@@ -1,17 +1,13 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { TodoItem } from "../../modules/types/types";
 import { useNavigate } from "react-router-dom";
+import { TodoBoolCheckbox } from "../checkbox/todoBoolCheckbox";
 
 interface ItemProps {
   todo: TodoItem;
-  toggleBool: (id: number) => void;
 }
-export const Item: FC<ItemProps> = ({ todo, toggleBool }) => {
+export const Item: FC<ItemProps> = ({ todo }) => {
   const navigate = useNavigate();
-
-  const handleToggle = () => {
-    toggleBool(todo.id);
-  };
 
   const hanldeItemClick = () => {
     navigate(`/details/${todo.id}`);
@@ -21,7 +17,7 @@ export const Item: FC<ItemProps> = ({ todo, toggleBool }) => {
     <>
       <li onClick={hanldeItemClick}>
         <span>{todo.name}</span>
-        <input type="checkbox" checked={todo.bool} onChange={handleToggle} />
+        <TodoBoolCheckbox todo={todo} />
       </li>
     </>
   );

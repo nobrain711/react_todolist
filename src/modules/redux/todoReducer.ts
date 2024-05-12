@@ -1,5 +1,10 @@
 import { TodoItem } from "../types/types";
-import { ADD_TODO, ONE_SELECT, TOGGLE_BOOL } from "../action/actionType";
+import {
+  ADD_TODO,
+  ONE_SELECT,
+  TOGGLE_BOOL,
+  UPDATED,
+} from "../action/actionType";
 import { dummyData } from "../types/dummyData";
 
 const initialState: TodoItem[] = dummyData;
@@ -21,13 +26,26 @@ const todoReducer = (state = initialState, action: any) => {
           bool: false,
         },
       ];
+    case UPDATED:
+      let uId: number = action.payload.id;
+
+      return state.map((todo) =>
+        todo.id === uId
+          ? {
+              ...todo,
+              name: action.payload.name,
+            }
+          : todo
+      );
 
     case ONE_SELECT:
       let sId: number = action.payload;
 
-      return state
-        .filter((sId) => sId !== null)
-        .map((todo) => (todo.id === sId ? { ...todo, seleted: true } : null));
+      return state.map((todo) =>
+        todo.id === sId
+          ? { ...todo, seleted: true }
+          : { ...todo, seleted: false }
+      );
 
     default:
       return state;

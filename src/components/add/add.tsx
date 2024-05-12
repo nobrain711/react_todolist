@@ -2,7 +2,7 @@ import { KeyboardEvent, useState } from "react";
 import { useDispatch } from "react-redux";
 import { ADD_TODO } from "../../modules/action/actionType";
 
-const Add = () => {
+export const Add = () => {
   const dispatch = useDispatch();
   const [name, setName] = useState<string>("");
 
@@ -44,5 +44,3 @@ const Add = () => {
     </>
   );
 };
-
-export default Add;

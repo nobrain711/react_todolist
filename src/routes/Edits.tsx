@@ -1,14 +1,13 @@
-import { Detail } from "../components/detail/detail";
 import { useParams } from "react-router-dom";
+import { Edit } from "../components/edit/Edit";
 
-export const Details = () => {
+export const Edits = () => {
   const { id } = useParams();
-
   const parsedId = id ? parseInt(id, 10) : 0;
 
   return (
-    <div>
-      <Detail id={parsedId} />
-    </div>
+    <>
+      <Edit id={parsedId} />
+    </>
   );
 };

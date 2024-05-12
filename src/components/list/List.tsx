@@ -3,24 +3,26 @@ import { TodoItem } from "../../modules/types/types";
 import { Item } from "../item/Item";
 import { useSelector } from "react-redux";
 import { RootState } from "../../modules/redux/rootReducer";
-import { useDispatch } from "react-redux";
-import { toggle_bool } from "../../modules/action/actionToggleBool";
+import { useNavigate } from "react-router-dom";
 
 export const List = () => {
   const todolsit = useSelector((state: RootState) => state.todos);
-  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {}, []);
 
-  const haldeToggleBool = (id: number) => {
-    dispatch(toggle_bool(id));
+  const moveToEdit = (id: number) => {
+    navigate(`edits/${id}`);
   };
 
   return (
     <>
       <ul>
         {todolsit.map((todo: TodoItem) => (
-          <Item key={todo.id} todo={todo} toggleBool={haldeToggleBool} />
+          <div key={todo.id}>
+            <Item todo={todo} />
+            <div onClick={() => moveToEdit(todo.id)}>edit</div>
+          </div>
         ))}
       </ul>
     </>
