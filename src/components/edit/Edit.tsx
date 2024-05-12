@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { one_select } from "../../modules/action/actionOneSelect";
+import { oneSelect } from "../../modules/action/actionOneSelect";
 import { useSelector } from "react-redux";
 import { RootState } from "../../modules/redux/rootReducer";
 import { TodoItem } from "../../modules/types/types";
@@ -17,7 +17,7 @@ export const Edit: FC<Props> = ({ id }) => {
   const [name, setName] = useState<string>("");
 
   useEffect(() => {
-    dispatch(one_select(id));
+    dispatch(oneSelect(id));
   }, [dispatch, id]);
 
   const todo: TodoItem | null = useSelector((state: RootState) => {

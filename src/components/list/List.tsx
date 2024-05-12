@@ -4,24 +4,32 @@ import { Item } from "../item/Item";
 import { useSelector } from "react-redux";
 import { RootState } from "../../modules/redux/rootReducer";
 import { useNavigate } from "react-router-dom";
+import { Delete } from "../delete/delete";
 
 export const List = () => {
-  const todolsit = useSelector((state: RootState) => state.todos);
+  const todolist = useSelector((state: RootState) => state.todos);
   const navigate = useNavigate();
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    console.log(todolist);
+  }, [todolist]);
 
   const moveToEdit = (id: number) => {
     navigate(`edits/${id}`);
   };
 
+  if (!Array.isArray(todolist)) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <>
       <ul>
-        {todolsit.map((todo: TodoItem) => (
+        {todolist.map((todo: TodoItem) => (
           <div key={todo.id}>
             <Item todo={todo} />
             <div onClick={() => moveToEdit(todo.id)}>edit</div>
+            <Delete todo={todo} />
           </div>
         ))}
       </ul>

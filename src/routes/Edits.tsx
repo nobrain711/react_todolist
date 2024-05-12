@@ -3,7 +3,7 @@ import { Edit } from "../components/edit/Edit";
 
 export const Edits = () => {
   const { id } = useParams();
-  const parsedId = id ? parseInt(id, 10) : 0;
+  const parsedId: number = id ? parseInt(id, 10) : 0;
 
   return (
     <>
