@@ -6,10 +6,9 @@ export const Header = () => {
   const navigate = useNavigate();
   const [view, SetView] = useState(true);
   const location = useLocation();
-  const regex = /^\/edits\/\d+$/;
 
   useEffect(() => {
-    console.log(location.pathname);
+    const regex = /^\/edits\/\d+$/;
 
     if (regex.test(location.pathname)) {
       SetView(false);
