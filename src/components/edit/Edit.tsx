@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC, FormEvent, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { oneSelect } from "../../modules/action/actionOneSelect";
@@ -25,7 +25,8 @@ export const Edit: FC<Props> = ({ id }) => {
     return selected ? selected : null;
   });
 
-  const handleTodoUpdate = () => {
+  const handleTodoUpdate = (event: FormEvent) => {
+    event.preventDefault();
     if (name === "") {
       alert("Please enter what you need to do!!!");
     } else {
@@ -39,6 +40,7 @@ export const Edit: FC<Props> = ({ id }) => {
     alert("Your registration is complete.");
     navigate(-1);
   };
+
   const hendleCancel = () => {
     navigate(-1);
   };
