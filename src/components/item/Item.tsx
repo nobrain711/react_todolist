@@ -30,10 +30,14 @@ export const Item: FC<ItemProps> = ({ todo }) => {
 
   return (
     <StyledIi onClick={hanldeItemClick}>
-      <span>{todo.name}</span>
-      <TodoBoolCheckbox todo={todo} />
-      <div onClick={() => moveToEdit(todo.id)}>edit</div>
-      <Delete todo={todo} />
+      <div>
+        <TodoBoolCheckbox todo={todo} />
+        <span>{todo.name}</span>
+      </div>
+      <div>
+        <div onClick={() => moveToEdit(todo.id)}>edit</div>
+        <Delete todo={todo} />
+      </div>
     </StyledIi>
   );
 };
