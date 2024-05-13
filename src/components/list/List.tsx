@@ -3,23 +3,12 @@ import { TodoItem } from "../../modules/types/types";
 import { Item } from "../item/Item";
 import { useSelector } from "react-redux";
 import { RootState } from "../../modules/redux/rootReducer";
-import { useNavigate } from "react-router-dom";
-import { Delete } from "../delete/delete";
+import { StyledUl } from "./list.styled";
 
 export const List = () => {
   const todolist = useSelector((state: RootState) => state.todos);
-  const navigate = useNavigate();
 
   useEffect(() => {}, []);
-
-  /**
-   * page move funtion
-   *
-   * @param id todolist id
-   */
-  const moveToEdit = (id: number) => {
-    navigate(`edits/${id}`);
-  };
 
   /**
    * todolist not data time return rendering
@@ -29,16 +18,10 @@ export const List = () => {
   }
 
   return (
-    <>
-      <ul>
-        {todolist.map((todo: TodoItem) => (
-          <div key={todo.id}>
-            <Item todo={todo} />
-            <div onClick={() => moveToEdit(todo.id)}>edit</div>
-            <Delete todo={todo} />
-          </div>
-        ))}
-      </ul>
-    </>
+    <StyledUl>
+      {todolist.map((todo: TodoItem) => (
+        <Item key={todo.id} todo={todo} />
+      ))}
+    </StyledUl>
   );
 };

@@ -1,6 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { Add } from "../../add/add";
 import { useEffect, useState } from "react";
+import { StyledHeader, StyledTitle } from "./header.styled";
 
 export const Header = () => {
   const navigate = useNavigate();
@@ -30,9 +31,9 @@ export const Header = () => {
   };
 
   return (
-    <>
-      <div onClick={handleMove}>TodoList</div>
+    <StyledHeader>
+      <StyledTitle onClick={handleMove}>TodoList</StyledTitle>
       {view ? <Add /> : null}
-    </>
+    </StyledHeader>
   );
 };

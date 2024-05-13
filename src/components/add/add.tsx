@@ -1,6 +1,7 @@
 import { KeyboardEvent, useState } from "react";
 import { useDispatch } from "react-redux";
 import { ADD_TODO } from "../../modules/action/actionType";
+import { StyledBtn, StyledForm, StyledInput } from "./add.syled";
 
 export const Add = () => {
   const dispatch = useDispatch();
@@ -39,19 +40,20 @@ export const Add = () => {
   };
 
   return (
-    <>
-      <form onSubmit={handleTodoAdd}>
-        <input
-          type="text"
-          placeholder="to do"
-          value={name}
-          onChange={(event) => setName(event.target.value)}
-          onKeyDown={handelKeyPress}
-        />
-        <button type="button" onClick={handleTodoAdd}>
-          submit
-        </button>
-      </form>
-    </>
+    <StyledForm
+      onSubmit={(event) => {
+        event.preventDefault();
+        handleTodoAdd();
+      }}
+    >
+      <StyledInput
+        type="text"
+        placeholder="to do"
+        value={name}
+        onChange={(event) => setName(event.target.value)}
+        onKeyUp={handelKeyPress}
+      />
+      <StyledBtn type="submit">submit</StyledBtn>{" "}
+    </StyledForm>
   );
 };
