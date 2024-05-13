@@ -7,6 +7,10 @@ export const Header = () => {
   const [view, SetView] = useState(true);
   const location = useLocation();
 
+  /**
+   * Address verification and /edits/:id
+   * Set not to view Add component
+   */
   useEffect(() => {
     const regex = /^\/edits\/\d+$/;
 
@@ -17,6 +21,10 @@ export const Header = () => {
     }
   }, [location]);
 
+  /**
+   * click event funtion
+   * move page for root
+   */
   const handleMove = () => {
     navigate("/");
   };

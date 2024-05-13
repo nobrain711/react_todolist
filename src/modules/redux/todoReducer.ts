@@ -12,12 +12,14 @@ const initialtodos: TodoItem[] = dummyData;
 
 const todoReducer = (todos = initialtodos, action: any) => {
   switch (action.type) {
+    // exchage todo bool value
     case TOGGLE_BOOL:
       let tId: number = action.payload;
       return todos.map((todo) =>
         todo.id === tId ? { ...todo, bool: !todo.bool } : todo
       );
 
+    // data add todo
     case ADD_TODO:
       return [
         ...todos,
@@ -28,6 +30,7 @@ const todoReducer = (todos = initialtodos, action: any) => {
         },
       ];
 
+    // todo data update
     case UPDATED:
       let uId: number = action.payload.id;
 
@@ -40,11 +43,13 @@ const todoReducer = (todos = initialtodos, action: any) => {
           : todo
       );
 
+    // data deleted todo
     case DELETED:
       let deleteTodo = action.payload;
 
       return todos.filter((todo) => todo.id !== deleteTodo.id);
 
+    // data one selected
     case ONE_SELECT:
       let sId: number = action.payload;
 
@@ -54,6 +59,7 @@ const todoReducer = (todos = initialtodos, action: any) => {
           : { ...todo, seleted: false }
       );
 
+    // default return now data
     default:
       return todos;
   }

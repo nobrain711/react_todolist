@@ -10,6 +10,10 @@ type Props = {
 export const TodoBoolCheckbox: FC<Props> = ({ todo }) => {
   const dispatch = useDispatch();
 
+  /**
+   * click event
+   * todo bool value exchage
+   */
   const handleToggleBool = () => {
     dispatch(toggle_bool(todo.id));
   };

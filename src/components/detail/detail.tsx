@@ -25,6 +25,10 @@ export const Detail: FC<Props> = ({ id }) => {
     return selected ? selected : null;
   });
 
+  /**
+   * click event funtion
+   * page back
+   */
   const handleLoactionBack = () => {
     navigate(-1);
   };

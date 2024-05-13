@@ -9,6 +9,12 @@ interface Props {
 export const Delete: FC<Props> = ({ todo }) => {
   const dispatch = useDispatch();
 
+  /**
+   * perform the delete function
+   * When job data is not null
+   * Check to see if todo data is deleted
+   * Delete data when commenting on deletion
+   */
   const handleTodoDelete = () => {
     if (todo) {
       const confirmed = window.confirm(

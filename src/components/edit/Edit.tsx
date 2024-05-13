@@ -20,11 +20,19 @@ export const Edit: FC<Props> = ({ id }) => {
     dispatch(oneSelect(id));
   }, [dispatch, id]);
 
+  /**
+   * todo item select for state
+   */
   const todo: TodoItem | null = useSelector((state: RootState) => {
     let selected = state.todos.find((todo) => todo.id === id);
     return selected ? selected : null;
   });
 
+  /**
+   * name value check is noting input
+   * alert data use time sumbit funtion call
+   * @param event :HTMLTag event
+   */
   const handleTodoUpdate = (event: FormEvent) => {
     event.preventDefault();
     if (name === "") {
@@ -34,12 +42,20 @@ export const Edit: FC<Props> = ({ id }) => {
     }
   };
 
+  /**
+   * todo data update and back page
+   */
   const submit = () => {
     dispatch({ type: UPDATED, payload: { id: id, name: name } });
     setName("");
     alert("Your registration is complete.");
     navigate(-1);
   };
+
+  /**
+   * click evnet funiton is not update todo and
+   * move back page
+   */
 
   const hendleCancel = () => {
     navigate(-1);

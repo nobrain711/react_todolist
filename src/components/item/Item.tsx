@@ -9,6 +9,10 @@ interface ItemProps {
 export const Item: FC<ItemProps> = ({ todo }) => {
   const navigate = useNavigate();
 
+  /**
+   * click event funtion
+   * move for page /details/:todo.id
+   */
   const hanldeItemClick = () => {
     navigate(`/details/${todo.id}`);
   };

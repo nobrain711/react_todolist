@@ -10,14 +10,20 @@ export const List = () => {
   const todolist = useSelector((state: RootState) => state.todos);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    console.log(todolist);
-  }, [todolist]);
+  useEffect(() => {}, []);
 
+  /**
+   * page move funtion
+   *
+   * @param id todolist id
+   */
   const moveToEdit = (id: number) => {
     navigate(`edits/${id}`);
   };
 
+  /**
+   * todolist not data time return rendering
+   */
   if (!Array.isArray(todolist)) {
     return <div>Loading...</div>;
   }
