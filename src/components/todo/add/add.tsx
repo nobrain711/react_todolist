@@ -1,9 +1,9 @@
-import { KeyboardEvent, useState } from "react";
+import { FC, KeyboardEvent, useState } from "react";
 import { useDispatch } from "react-redux";
-import { ADD_TODO } from "../../modules/action/actionType";
+import { ADD_TODO } from "../../../modules/action/actionType";
 import { StyledBtn, StyledForm, StyledInput } from "./add.syled";
 
-export const Add = () => {
+export const Add: FC = () => {
   const dispatch = useDispatch();
   const [name, setName] = useState<string>("");
 
@@ -22,6 +22,7 @@ export const Add = () => {
    * name is not null submit funtion call
    * name is null alert
    */
+
   const handleTodoAdd = () => {
     if (name === "") {
       alert("Please enter what you need to do!!!");
@@ -33,6 +34,7 @@ export const Add = () => {
   /**
    * todo is add funtion
    */
+
   const submit = () => {
     dispatch({ type: ADD_TODO, payload: name });
     setName("");

@@ -1,7 +1,8 @@
-import { TodoItem } from "../../modules/types/types";
+import { TodoItem } from "../../../modules/types/types";
 import { useDispatch } from "react-redux";
-import { toggle_bool } from "../../modules/action/actionToggleBool";
+import { toggle_bool } from "../../../modules/action/actionToggleBool";
 import { FC } from "react";
+import { StyledInput } from "./todoBoolCheckbox.styled";
 
 type Props = {
   todo: TodoItem;
@@ -14,11 +15,16 @@ export const TodoBoolCheckbox: FC<Props> = ({ todo }) => {
    * click event
    * todo bool value exchage
    */
+
   const handleToggleBool = () => {
     dispatch(toggle_bool(todo.id));
   };
 
   return (
-    <input type="checkbox" checked={todo.bool} onChange={handleToggleBool} />
+    <StyledInput
+      type="checkbox"
+      checked={todo.bool}
+      onChange={handleToggleBool}
+    />
   );
 };

@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { useDispatch } from "react-redux";
-import { DELETED } from "../../modules/action/actionType";
-import { TodoItem } from "../../modules/types/types";
+import { DELETED } from "../../../modules/action/actionType";
+import { TodoItem } from "../../../modules/types/types";
 
 interface Props {
   todo: TodoItem;

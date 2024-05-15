@@ -2,11 +2,17 @@ import { FC, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { oneSelect } from "../../modules/action/actionOneSelect";
-import { RootState } from "../../modules/redux/rootReducer";
-import { TodoBoolCheckbox } from "../checkbox/todoBoolCheckbox";
-import { TodoItem } from "../../modules/types/types";
+import { oneSelect } from "../../../modules/action/actionOneSelect";
+import { RootState } from "../../../modules/redux/rootReducer";
+import { TodoBoolCheckbox } from "../../button/checkbox/todoBoolCheckbox";
+import { TodoItem } from "../../../modules/types/types";
 import { Delete } from "../delete/delete";
+import {
+  StyledDetailDiv,
+  StyledDetailMain,
+  StyledDatailTitle,
+} from "./detail.styled";
+import { Back } from "../../button/back/Back";
 
 interface Props {
   id: number;
@@ -33,17 +39,20 @@ export const Detail: FC<Props> = ({ id }) => {
     navigate(-1);
   };
   return (
-    <>
+    <StyledDetailDiv>
       {todo ? (
-        <>
-          <h2>{todo.name}</h2>
+        <StyledDetailMain>
+          <StyledDatailTitle>{todo.name}</StyledDatailTitle>
           <TodoBoolCheckbox todo={todo} />
           <Delete todo={todo} />
-        </>
+          <Back />
+        </StyledDetailMain>
       ) : (
-        <div>not found data</div>
+        <StyledDetailMain>
+          <div>not found data</div>
+          <div onClick={handleLoactionBack}>go Back</div>
+        </StyledDetailMain>
       )}
-      <div onClick={handleLoactionBack}>go Back</div>
-    </>
+    </StyledDetailDiv>
   );
 };

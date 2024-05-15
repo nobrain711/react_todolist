@@ -1,9 +1,9 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { Add } from "../../add/add";
-import { useEffect, useState } from "react";
+import { Add } from "../../todo/add/add";
+import { FC, useEffect, useState } from "react";
 import { StyledHeader, StyledTitle } from "./header.styled";
 
-export const Header = () => {
+export const Header: FC = () => {
   const navigate = useNavigate();
   const [view, SetView] = useState(true);
   const location = useLocation();

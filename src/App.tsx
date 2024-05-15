@@ -6,8 +6,9 @@ import { store } from "./modules/redux/store";
 import { Header } from "./components/common/header/header";
 import { Details } from "./routes/Details";
 import { Edits } from "./routes/Edits";
+import { FC } from "react";
 
-export const App = () => {
+export const App: FC = () => {
   return (
     <Provider store={store}>
       <Router>

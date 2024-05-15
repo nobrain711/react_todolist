@@ -1,8 +1,8 @@
 import { FC } from "react";
-import { TodoItem } from "../../modules/types/types";
+import { TodoItem } from "../../../modules/types/types";
 import { useNavigate } from "react-router-dom";
-import { TodoBoolCheckbox } from "../checkbox/todoBoolCheckbox";
-import { StyledIi } from "./Item.syled";
+import { TodoBoolCheckbox } from "../../button/checkbox/todoBoolCheckbox";
+import { StyledIi, StyledSpan, StyledTextDiv } from "./Item.syled";
 import { Delete } from "../delete/delete";
 
 interface ItemProps {
@@ -29,11 +29,11 @@ export const Item: FC<ItemProps> = ({ todo }) => {
   };
 
   return (
-    <StyledIi onClick={hanldeItemClick}>
-      <div>
+    <StyledIi>
+      <StyledTextDiv>
         <TodoBoolCheckbox todo={todo} />
-        <span>{todo.name}</span>
-      </div>
+        <StyledSpan onClick={hanldeItemClick}>{todo.name}</StyledSpan>
+      </StyledTextDiv>
       <div>
         <div onClick={() => moveToEdit(todo.id)}>edit</div>
         <Delete todo={todo} />

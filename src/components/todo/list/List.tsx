@@ -1,11 +1,11 @@
-import { useEffect } from "react";
-import { TodoItem } from "../../modules/types/types";
+import { FC, useEffect } from "react";
+import { TodoItem } from "../../../modules/types/types";
 import { Item } from "../item/Item";
 import { useSelector } from "react-redux";
-import { RootState } from "../../modules/redux/rootReducer";
+import { RootState } from "../../../modules/redux/rootReducer";
 import { StyledUl } from "./list.styled";
 
-export const List = () => {
+export const List: FC = () => {
   const todolist = useSelector((state: RootState) => state.todos);
 
   useEffect(() => {}, []);
@@ -13,6 +13,7 @@ export const List = () => {
   /**
    * todolist not data time return rendering
    */
+
   if (!Array.isArray(todolist)) {
     return <div>Loading...</div>;
   }

@@ -1,11 +1,11 @@
 import { FC, FormEvent, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { oneSelect } from "../../modules/action/actionOneSelect";
+import { oneSelect } from "../../../modules/action/actionOneSelect";
 import { useSelector } from "react-redux";
-import { RootState } from "../../modules/redux/rootReducer";
-import { TodoItem } from "../../modules/types/types";
-import { UPDATED } from "../../modules/action/actionType";
+import { RootState } from "../../../modules/redux/rootReducer";
+import { TodoItem } from "../../../modules/types/types";
+import { UPDATED } from "../../../modules/action/actionType";
 
 interface Props {
   id: number;
@@ -23,6 +23,7 @@ export const Edit: FC<Props> = ({ id }) => {
   /**
    * todo item select for state
    */
+
   const todo: TodoItem | null = useSelector((state: RootState) => {
     let selected = state.todos.find((todo) => todo.id === id);
     return selected ? selected : null;
@@ -33,6 +34,7 @@ export const Edit: FC<Props> = ({ id }) => {
    * alert data use time sumbit funtion call
    * @param event :HTMLTag event
    */
+
   const handleTodoUpdate = (event: FormEvent) => {
     event.preventDefault();
     if (name === "") {
