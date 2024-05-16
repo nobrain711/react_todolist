@@ -7,10 +7,6 @@ import { Header } from "./components/common/header/header";
 import { Details } from "./routes/Details";
 import { Edits } from "./routes/Edits";
 import { FC } from "react";
-import { AddData } from "./components/mock/firebase/AddData";
-import { ReadData } from "./components/mock/firebase/ReadData";
-import { UpdateData } from "./components/mock/firebase/UpdateData";
-import { DeleteData } from "./components/mock/firebase/DeleteData";
 
 export const App: FC = () => {
   return (
