@@ -1,6 +1,6 @@
 import { FC, KeyboardEvent, useState } from "react";
 import { useDispatch } from "react-redux";
-import { ADD_TODO } from "../../../modules/action/actionType";
+import { ADD_TODO } from "../../../redux/action/actionType";
 import { StyledBtn, StyledForm, StyledInput } from "./add.syled";
 
 export const Add: FC = () => {

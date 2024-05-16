@@ -5,7 +5,7 @@ import {
   ONE_SELECT,
   TOGGLE_BOOL,
   UPDATED,
-} from "../action/actionType";
+} from "./action/actionType";
 import { dummyData } from "../types/dummyData";
 
 const initialtodos: TodoItem[] = dummyData;

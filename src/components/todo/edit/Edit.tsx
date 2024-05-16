@@ -1,11 +1,11 @@
 import { FC, FormEvent, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { oneSelect } from "../../../modules/action/actionOneSelect";
+import { oneSelect } from "../../../redux/action/actionOneSelect";
 import { useSelector } from "react-redux";
-import { RootState } from "../../../modules/redux/rootReducer";
-import { TodoItem } from "../../../modules/types/types";
-import { UPDATED } from "../../../modules/action/actionType";
+import { RootState } from "../../../redux/rootReducer";
+import { TodoItem } from "../../../types/types";
+import { UPDATED } from "../../../redux/action/actionType";
 
 interface Props {
   id: number;

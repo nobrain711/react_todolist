@@ -2,10 +2,10 @@ import { FC, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { oneSelect } from "../../../modules/action/actionOneSelect";
-import { RootState } from "../../../modules/redux/rootReducer";
+import { oneSelect } from "../../../redux/action/actionOneSelect";
+import { RootState } from "../../../redux/rootReducer";
 import { TodoBoolCheckbox } from "../../button/checkbox/todoBoolCheckbox";
-import { TodoItem } from "../../../modules/types/types";
+import { TodoItem } from "../../../types/types";
 import { Delete } from "../delete/delete";
 import {
   StyledDetailDiv,

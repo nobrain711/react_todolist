@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { TodoItem } from "../../../modules/types/types";
+import { TodoItem } from "../../../types/types";
 import { useNavigate } from "react-router-dom";
 import { TodoBoolCheckbox } from "../../button/checkbox/todoBoolCheckbox";
 import { StyledIi, StyledSpan, StyledTextDiv } from "./Item.syled";

@@ -1,6 +1,6 @@
-import { TodoItem } from "../../../modules/types/types";
+import { TodoItem } from "../../../types/types";
 import { useDispatch } from "react-redux";
-import { toggle_bool } from "../../../modules/action/actionToggleBool";
+import { toggle_bool } from "../../../redux/action/actionToggleBool";
 import { FC } from "react";
 import { StyledInput } from "./todoBoolCheckbox.styled";
 
