@@ -2,7 +2,7 @@ import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Todolist } from "./routes/List";
 import { Provider } from "react-redux";
-import { store } from "./redux/store";
+import { store } from "./redux/store/store";
 import { Header } from "./components/common/header/header";
 import { Details } from "./routes/Details";
 import { Edits } from "./routes/Edits";

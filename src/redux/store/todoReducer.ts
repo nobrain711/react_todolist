@@ -1,12 +1,12 @@
-import { TodoItem } from "../types/types";
+import { TodoItem } from "../../types/types";
 import {
   ADD_TODO,
   DELETED,
   ONE_SELECT,
   TOGGLE_BOOL,
   UPDATED,
-} from "./action/actionType";
-import { dummyData } from "../types/dummyData";
+} from "../action/actionType";
+import { dummyData } from "../../types/dummyData";
 
 const initialtodos: TodoItem[] = dummyData;
 
