@@ -1,8 +1,8 @@
 import { TodoItem } from "../../../types/types";
 import { useDispatch } from "react-redux";
-import { toggle_bool } from "../../../redux/action/actionToggleBool";
 import { FC } from "react";
 import { StyledInput } from "./todoBoolCheckbox.styled";
+import { exchagneTodoBool } from "../../../redux/action/todoAction";
 
 type Props = {
   todo: TodoItem;
@@ -17,7 +17,7 @@ export const TodoBoolCheckbox: FC<Props> = ({ todo }) => {
    */
 
   const handleToggleBool = () => {
-    dispatch(toggle_bool(todo.id));
+    dispatch(exchagneTodoBool(todo.id));
   };
 
   return (

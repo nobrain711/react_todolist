@@ -1,68 +1,52 @@
 import { TodoItem } from "../types/types";
 import {
   ADD_TODO,
-  DELETED,
+  DELETE,
+  EXCHAGNE_BOOL,
+  FETCH_TODOS_FAILURE,
+  FETCH_TODOS_REQUEST,
+  FETCH_TODOS_SUCCESS,
   ONE_SELECT,
-  TOGGLE_BOOL,
-  UPDATED,
+  UPDATE,
 } from "./action/actionType";
-import { dummyData } from "../types/dummyData";
+import { TodoActionTypes } from "./action/actions";
 
-const initialtodos: TodoItem[] = dummyData;
+interface TodoState {
+  todos: TodoItem[];
+  loading: boolean;
+  error: string | null;
+}
 
-const todoReducer = (todos = initialtodos, action: any) => {
-  switch (action.type) {
-    // exchage todo bool value
-    case TOGGLE_BOOL:
-      let tId: number = action.payload;
-      return todos.map((todo) =>
-        todo.id === tId ? { ...todo, bool: !todo.bool } : todo
-      );
-
-    // data add todo
-    case ADD_TODO:
-      return [
-        ...todos,
-        {
-          id: todos.length + 1,
-          name: action.payload,
-          bool: false,
-        },
-      ];
-
-    // todo data update
-    case UPDATED:
-      let uId: number = action.payload.id;
-
-      return todos.map((todo) =>
-        todo.id === uId
-          ? {
-              ...todo,
-              name: action.payload.name,
-            }
-          : todo
-      );
-
-    // data deleted todo
-    case DELETED:
-      let deleteTodo = action.payload;
-
-      return todos.filter((todo) => todo.id !== deleteTodo.id);
-
-    // data one selected
-    case ONE_SELECT:
-      let sId: number = action.payload;
-
-      return todos.map((todo) =>
-        todo.id === sId
-          ? { ...todo, seleted: true }
-          : { ...todo, seleted: false }
-      );
-
-    // default return now data
-    default:
-      return todos;
-  }
+const initalState: TodoState = {
+  todos: [],
+  loading: false,
+  error: null,
 };
 
-export default todoReducer;
+export const todoReducer = (
+  state = initalState,
+  action: TodoActionTypes
+): TodoState => {
+  switch (action.type) {
+    case FETCH_TODOS_REQUEST:
+      return { ...state, loading: true, error: null };
+
+    case FETCH_TODOS_SUCCESS:
+      return { ...state, loading: false, todos: action.payload };
+
+    case FETCH_TODOS_FAILURE:
+      return { ...state, loading: false, error: action.payload.error };
+
+    case ADD_TODO:
+      let newTodo: TodoItem = {
+        id: 0,
+        name: action.payload.name,
+        bool: false,
+      };
+
+      return { ...state, todos: [...state.todos, newTodo] };
+
+    default:
+      return state;
+  }
+};

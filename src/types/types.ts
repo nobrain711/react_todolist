@@ -1,5 +1,5 @@
-export interface TodoItem{
-  id:number;
-  name:string;
-  bool:boolean;
+export interface TodoItem {
+  id: number;
+  name: string;
+  bool: boolean;
 }

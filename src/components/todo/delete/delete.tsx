@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { useDispatch } from "react-redux";
-import { DELETED } from "../../../redux/action/actionType";
+import { DELETE } from "../../../redux/action/actionType";
 import { TodoItem } from "../../../types/types";
 
 interface Props {
@@ -24,7 +24,7 @@ export const Delete: FC<Props> = ({ todo }) => {
         console.log(`${todo.name}을 삭제합니다.`);
         console.log(`${todo.id}`);
 
-        dispatch({ type: DELETED, payload: todo });
+        dispatch({ type: DELETE, payload: todo });
       }
     }
   };
