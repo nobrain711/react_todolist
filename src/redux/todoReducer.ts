@@ -27,6 +27,14 @@ export const todoReducer = (
   state = initalState,
   action: TodoActionTypes
 ): TodoState => {
+  /** TodoState의 type으로 switch문을 실행
+   * FETCH_TODOS_REQUEST
+   * 현재 데이터 요청을 보냈다는 의미로 사용 
+   * FETCH_TODOS_SUCCESS
+   * 보낸 요청이 성공적으로 처리가 되었다 의미
+   * FETCH_TODOS_FAILURE
+   * 보낸 요청이 성공적으로 처리 되지 않음을 의미*/
+  
   switch (action.type) {
     case FETCH_TODOS_REQUEST:
       return { ...state, loading: true, error: null };
@@ -38,13 +46,7 @@ export const todoReducer = (
       return { ...state, loading: false, error: action.payload.error };
 
     case ADD_TODO:
-      let newTodo: TodoItem = {
-        id: 0,
-        name: action.payload.name,
-        bool: false,
-      };
-
-      return { ...state, todos: [...state.todos, newTodo] };
+      return state;
 
     default:
       return state;

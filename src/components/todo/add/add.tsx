@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { ADD_TODO } from "../../../redux/action/actionType";
 import { StyledBtn, StyledForm, StyledInput } from "./add.syled";
 import { AppDispatch } from "../../../redux/store";
+import { addTodo, fetchTodos } from "../../../redux/action/todoAction";
 
 export const Add: FC = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -39,7 +40,7 @@ export const Add: FC = () => {
    */
 
   const submit = () => {
-    dispatch({ type: ADD_TODO, payload: name });
+    dispatch(addTodo(name));
     setName("");
     alert("Your registration is complete.");
   };

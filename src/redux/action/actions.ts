@@ -12,7 +12,6 @@ import {
 
 interface AddTodoAciton {
   type: typeof ADD_TODO;
-  payload: { name: string };
 }
 
 interface DeleteTodoAciton {
