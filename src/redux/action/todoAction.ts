@@ -3,16 +3,16 @@ import { TodoActionTypes } from "./actions";
 import {
   ADD_TODO,
   DELETE,
-  EXCHAGNE_BOOL,
+  UPDATE_TODO_BOOL,
   FETCH_TODOS_FAILURE,
   FETCH_TODOS_REQUEST,
   FETCH_TODOS_SUCCESS,
   FETCH_TODO_SUCCESS,
-  ONE_SELECT,
   UPDATE,
 } from "./actionType";
 import { supabase } from "../../supabaseClient";
 import { test } from "./supabase";
+import { TodoItem } from "../../types/types";
 
 /**
  * supabase의 todos table의 전체 데이터 출력
@@ -56,6 +56,18 @@ export const fetchTodo = (id: number) => async (dispatch: Dispatch<TodoActionTyp
   }
 }
 
+export const updateTodoBool = (todo: TodoItem) => async (dispatch: Dispatch<TodoActionTypes>) => {
+  let id: number = todo.id;
+
+  try {
+    const { data, error } = await supabase.from(test).update('bool').eq('id', id).select();
+    if (error) throw error;
+    dispatch({ type: UPDATE_TODO_BOOL, payload: data[0] })
+  } catch (error: any) {
+    dispatch({ type: FETCH_TODOS_FAILURE, payload: error })
+  }
+};
+
 export const updateTodo = (id: number, name: string) => ({
   type: UPDATE,
   payload: { id, name },
@@ -66,12 +78,4 @@ export const delecteTodo = (id: number) => ({
   payload: { id },
 });
 
-export const selectTodo = (id: number) => ({
-  type: ONE_SELECT,
-  payload: { id },
-});
 
-export const exchagneTodoBool = (id: number) => ({
-  type: EXCHAGNE_BOOL,
-  pacyload: { id },
-});

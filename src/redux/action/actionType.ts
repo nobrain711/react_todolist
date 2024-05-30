@@ -1,6 +1,5 @@
-export const EXCHAGNE_BOOL = "EXCHAGNE_BOOL";
+export const UPDATE_TODO_BOOL = "UPDATE_TODO_BOOL";
 export const ADD_TODO = "ADDED";
-export const ONE_SELECT = "ONE_SELECT";
 export const UPDATE = "UPDATAE";
 export const DELETE = "DELECTE";
 export const FETCH_TODOS_REQUEST = "FETCH_TODOS_REQUEST";

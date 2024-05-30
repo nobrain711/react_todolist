@@ -2,13 +2,12 @@ import { TodoItem } from "../types/types";
 import {
   ADD_TODO,
   DELETE,
-  EXCHAGNE_BOOL,
+  UPDATE_TODO_BOOL,
   FETCH_TODOS_FAILURE,
   FETCH_TODOS_REQUEST,
   FETCH_TODOS_SUCCESS,
   FETCH_TODO_REQUEST,
   FETCH_TODO_SUCCESS,
-  ONE_SELECT,
   UPDATE,
 } from "./action/actionType";
 import { TodoActionTypes } from "./action/actions";
@@ -54,6 +53,9 @@ export const todoReducer = (
       return { ...state, loading: false, todos: [...state.todos, action.payload] }
 
     case ADD_TODO:
+      return { ...state, todos: [...state.todos, action.payload] };
+
+    case UPDATE_TODO_BOOL:
       return { ...state, todos: [...state.todos, action.payload] };
 
     default:

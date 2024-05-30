@@ -1,11 +1,8 @@
 import { FC, FormEvent, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { ONE_SELECT } from "../../../redux/action/actionType";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../redux/rootReducer";
-import { TodoItem } from "../../../types/types";
-import { UPDATE } from "../../../redux/action/actionType";
+import { AppDispatch } from "../../../redux/store";
+import { fetchTodo } from "../../../redux/action/todoAction";
 
 interface Props {
   id: number;
@@ -13,20 +10,20 @@ interface Props {
 
 export const Edit: FC<Props> = ({ id }) => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
   const [name, setName] = useState<string>("");
 
-  // useEffect(() => {
-  //   dispatch(ONE_SELECT(id));
-  // }, [dispatch, id]);
+  useEffect(() => {
+    dispatch(fetchTodo(id));
+  }, [dispatch, id]);
 
   /**
    * todo item select for state
    */
-  // const todo: TodoItem | null = useSelector((state: RootState) => {
-  //   let selected = state.todos.find((todo: { id: number; }) => todo.id === id);
-  //   return selected ? selected : null;
-  // });
+  const todo: TodoItem | null = useSelector((state: RootState) => {
+    let selected = state.todos.find((todo: { id: number; }) => todo.id === id);
+    return selected ? selected : null;
+  });
 
   /**
    * name value check is noting input
@@ -63,28 +60,27 @@ export const Edit: FC<Props> = ({ id }) => {
   };
 
   return (
-    // <>
-    //   {todo ? (
-    //     <>
-    //       <form onSubmit={handleTodoUpdate}>
-    //         <input
-    //           type="text"
-    //           value={name}
-    //           placeholder={todo.name}
-    //           onChange={(event) => setName(event.target.value)}
-    //         />
-    //         <button type="button" onClick={handleTodoUpdate}>
-    //           submit
-    //         </button>
-    //         <button type="button" onClick={hendleCancel}>
-    //           Cancel
-    //         </button>
-    //       </form>
-    //     </>
-    //   ) : (
-    //     <div>not found data</div>
-    //   )}
-    // </>
-    <div>not found data</div>
+    <>
+      {todo ? (
+        <>
+          <form onSubmit={handleTodoUpdate}>
+            <input
+              type="text"
+              value={name}
+              placeholder={todo.name}
+              onChange={(event) => setName(event.target.value)}
+            />
+            <button type="button" onClick={handleTodoUpdate}>
+              submit
+            </button>
+            <button type="button" onClick={hendleCancel}>
+              Cancel
+            </button>
+          </form>
+        </>
+      ) : (
+        <div>not found data</div>
+      )}
+    </>
   );
 };

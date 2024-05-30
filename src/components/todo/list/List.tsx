@@ -42,7 +42,7 @@ export const List: FC = () => {
    */
   return (
     <StyledUl>
-      {todos.map((todo: TodoItem) => (
+      {todos.length > 0 && todos.map((todo: TodoItem) => (
         <Item key={todo.id} todo={todo} />
       ))}
     </StyledUl>

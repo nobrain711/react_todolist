@@ -2,7 +2,7 @@ import { TodoItem } from "../../types/types";
 import {
   ADD_TODO,
   DELETE,
-  EXCHAGNE_BOOL,
+  UPDATE_TODO_BOOL,
   FETCH_TODOS_FAILURE,
   FETCH_TODOS_REQUEST,
   FETCH_TODOS_SUCCESS,
@@ -18,17 +18,16 @@ interface AddTodoAciton {
 
 interface DeleteTodoAciton {
   type: typeof DELETE;
-  payload: { id: number };
 }
 
-interface ExchagneBoolAction {
-  type: typeof EXCHAGNE_BOOL;
-  payload: { id: number };
+interface UpdateTodoBoolAction {
+  type: typeof UPDATE_TODO_BOOL;
+  payload: TodoItem;
 }
 
 interface UpdateTodoAction {
   type: typeof UPDATE;
-  payload: { id: number; name: string };
+  payload: TodoItem;
 }
 
 interface FetchTodosRequestAction {
@@ -57,7 +56,7 @@ interface FetchTodoSuccessAction {
 export type TodoActionTypes =
   | AddTodoAciton
   | DeleteTodoAciton
-  | ExchagneBoolAction
+  | UpdateTodoBoolAction
   | UpdateTodoAction
   | FetchTodosRequestAction
   | FetchTodosSuccessAction
