@@ -19,7 +19,7 @@ export const List: FC = () => {
    */
   useEffect(() => {
     dispatch(fetchTodos());
-  }, [dispatch]);``
+  }, [dispatch]);
 
   /**
    * 비동기로 인해 대기 발생시 로딩 중 인지 알려주는 함수
