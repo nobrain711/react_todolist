@@ -7,10 +7,12 @@ import {
   FETCH_TODOS_FAILURE,
   FETCH_TODOS_REQUEST,
   FETCH_TODOS_SUCCESS,
+  FETCH_TODO_SUCCESS,
   ONE_SELECT,
   UPDATE,
 } from "./actionType";
 import { supabase } from "../../supabaseClient";
+import { test } from "./supabase";
 
 /**
  * supabase의 todos table의 전체 데이터 출력
@@ -19,16 +21,16 @@ import { supabase } from "../../supabaseClient";
  * 
  * 현재 interface에는 id name bool만 작성되어 있어서 colum은 id name bool만 호출
  */
-export const fetchTodos = () => async (dispatch: Dispatch<TodoActionTypes>) => {
+export const fetchTodos = () => async (dispatch: Dispatch<TodoActionTypes>): Promise<void> => {
   dispatch({ type: FETCH_TODOS_REQUEST });
   try {
     const { data, error } = await supabase
-      .from("todos")
-      .select("id, name, bool");
+      .from(test)
+      .select();
 
     if (error) throw error;
     dispatch({ type: FETCH_TODOS_SUCCESS, payload: data });
-  } catch (error: any) { 
+  } catch (error: any) {
     dispatch({ type: FETCH_TODOS_FAILURE, payload: error });
   }
 };
@@ -36,13 +38,23 @@ export const fetchTodos = () => async (dispatch: Dispatch<TodoActionTypes>) => {
 export const addTodo =
   (name: string) => async (dispatch: Dispatch<TodoActionTypes>) => {
     try {
-      const {  error } = await supabase.from("todos").insert([{ name }]);
-      
+      const { data, error } = await supabase.from(test).insert([{ name }]).select();
       if (error) throw error;
+      dispatch({ type: ADD_TODO, payload: data[0] })
     } catch (error: any) {
       dispatch({ type: FETCH_TODOS_FAILURE, payload: error });
     }
   };
+
+export const fetchTodo = (id: number) => async (dispatch: Dispatch<TodoActionTypes>) => {
+  try {
+    const { data, error } = await supabase.from(test).select().eq('id', id);
+    if (error) throw error;
+    dispatch({ type: FETCH_TODO_SUCCESS, payload: data[0] })
+  } catch (error: any) {
+    dispatch({ type: FETCH_TODOS_FAILURE, payload: error });
+  }
+}
 
 export const updateTodo = (id: number, name: string) => ({
   type: UPDATE,

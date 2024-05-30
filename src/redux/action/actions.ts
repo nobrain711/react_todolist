@@ -6,21 +6,18 @@ import {
   FETCH_TODOS_FAILURE,
   FETCH_TODOS_REQUEST,
   FETCH_TODOS_SUCCESS,
-  ONE_SELECT,
+  FETCH_TODO_REQUEST,
+  FETCH_TODO_SUCCESS,
   UPDATE,
 } from "./actionType";
 
 interface AddTodoAciton {
   type: typeof ADD_TODO;
+  payload: TodoItem;
 }
 
 interface DeleteTodoAciton {
   type: typeof DELETE;
-  payload: { id: number };
-}
-
-interface OneSelectAction {
-  type: typeof ONE_SELECT;
   payload: { id: number };
 }
 
@@ -47,12 +44,23 @@ interface FetchTodosFailureAction {
   type: typeof FETCH_TODOS_FAILURE;
   payload: { error: string };
 }
+
+interface FetchTodoRequestAction {
+  type: typeof FETCH_TODO_REQUEST;
+}
+
+interface FetchTodoSuccessAction {
+  type: typeof FETCH_TODO_SUCCESS;
+  payload: TodoItem
+}
+
 export type TodoActionTypes =
   | AddTodoAciton
   | DeleteTodoAciton
-  | OneSelectAction
   | ExchagneBoolAction
   | UpdateTodoAction
   | FetchTodosRequestAction
   | FetchTodosSuccessAction
-  | FetchTodosFailureAction;
+  | FetchTodosFailureAction
+  | FetchTodoRequestAction
+  | FetchTodoSuccessAction;

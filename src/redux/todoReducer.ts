@@ -6,6 +6,8 @@ import {
   FETCH_TODOS_FAILURE,
   FETCH_TODOS_REQUEST,
   FETCH_TODOS_SUCCESS,
+  FETCH_TODO_REQUEST,
+  FETCH_TODO_SUCCESS,
   ONE_SELECT,
   UPDATE,
 } from "./action/actionType";
@@ -34,7 +36,7 @@ export const todoReducer = (
    * 보낸 요청이 성공적으로 처리가 되었다 의미
    * FETCH_TODOS_FAILURE
    * 보낸 요청이 성공적으로 처리 되지 않음을 의미*/
-  
+
   switch (action.type) {
     case FETCH_TODOS_REQUEST:
       return { ...state, loading: true, error: null };
@@ -45,8 +47,14 @@ export const todoReducer = (
     case FETCH_TODOS_FAILURE:
       return { ...state, loading: false, error: action.payload.error };
 
+    case FETCH_TODO_REQUEST:
+      return { ...state, loading: true, error: null }
+
+    case FETCH_TODO_SUCCESS:
+      return { ...state, loading: false, todos: [...state.todos, action.payload] }
+
     case ADD_TODO:
-      return state;
+      return { ...state, todos: [...state.todos, action.payload] };
 
     default:
       return state;
