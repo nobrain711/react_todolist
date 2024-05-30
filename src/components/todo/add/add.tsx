@@ -1,25 +1,12 @@
-import { FC, KeyboardEvent, useState } from "react";
+import { FC, useState } from "react";
 import { useDispatch } from "react-redux";
-import { ADD_TODO } from "../../../redux/action/actionType";
 import { StyledBtn, StyledForm, StyledInput } from "./add.syled";
 import { AppDispatch } from "../../../redux/store";
-import { addTodo, fetchTodos } from "../../../redux/action/todoAction";
+import { addTodo } from "../../../redux/action/todoAction";
 
 export const Add: FC = () => {
   const dispatch: AppDispatch = useDispatch();
   const [name, setName] = useState<string>("");
-
-  /**
-   * Enter키를 입력 받을 시 현재 키보드 이벤트를 잠시 멈춤 기 위한 함수
-   * @event의 타입은 keyboradEvent<HTMLInputElement>로 정의 되며
-   * keyboardEvent에서 HTML태그 중에서 Input태그의 이벤트를 잠시 멈춤
-   */
-  const handelKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "Enter") {
-      event.preventDefault();
-      handleTodoAdd();
-    }
-  };
 
   /**
    * name의 입력된 값이 있는지 확인하기 위한 함수
@@ -57,7 +44,6 @@ export const Add: FC = () => {
         placeholder="to do"
         value={name}
         onChange={(event) => setName(event.target.value)}
-        onKeyUp={handelKeyPress}
       />
       <StyledBtn type="submit">submit</StyledBtn>{" "}
     </StyledForm>
